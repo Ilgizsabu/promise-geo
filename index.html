@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promice-Geo</title>
+</head>
+<body>
+    <script>
+        function currentPosition() {
+            return new Promise((resolve, reject) => {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve(position)
+                    },
+                    (error) => {
+                        reject(error)
+                    }
+                );
+            });
+        };
+
+        currentPosition()
+            .then((position) => {
+                console.log(position.coords.latitude, position.coords.longitude);
+            })
+            .catch((error) => {
+                console.log('Ошибка:', error.message);
+            });
+    </script>
+</body>
+</html>
